@@ -1,5 +1,5 @@
 diff --git a/node_modules/node-abi/abi_registry.json b/node_modules/node-abi/abi_registry.json
-index 15bbb76..8d6b059 100644
+index cd2fc17..fd41851 100644
 --- a/node_modules/node-abi/abi_registry.json
 +++ b/node_modules/node-abi/abi_registry.json
 @@ -52,7 +52,7 @@

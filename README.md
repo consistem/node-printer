@@ -39,12 +39,12 @@ I was involved in a project where I need to print from Node.JS. This is the reas
 
 ### How to install:
 ```
-npm install @thiagoelg/node-printer
+npm install @consistem/node-printer
 ```
 
 ### How to use:
 
-See [examples](https://github.com/thiagoelg/node-printer/tree/main/examples)
+See [examples](https://github.com/consistem/node-printer/tree/main/examples)
 
 ### Author(s):
 
@@ -54,6 +54,7 @@ See [examples](https://github.com/thiagoelg/node-printer/tree/main/examples)
 
 * Thiago Lugli, @thiagoelg
 * Eko Eryanto, @ekoeryanto
+* Fylipe Amorim, @fylipeamorim
 
 Feel free to download, test and propose new futures
 

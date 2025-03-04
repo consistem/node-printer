@@ -1,9 +1,10 @@
 {
   "variables": {
     "module_name%": "node_printer",
-    "module_path%": "lib"
+    "module_path%": "lib",
+    "openssl_fips": "",
   },
-  'targets': [
+  "targets": [
     {
       "target_name": "action_after_build",
       "type": "none",
@@ -16,56 +17,56 @@
       ]
     },
     {
-      'target_name': 'node_printer',
-      'sources': [
-        # is like "ls -1 src/*.cc", but gyp does not support direct patterns on
-        # sources
-        '<!@(["python", "tools/getSourceFiles.py", "src", "cc"])'
+      "target_name": "node_printer",
+      "sources": [
+        "<!@([\"python\", \"tools/getSourceFiles.py\", \"src\", \"cc\"])"
       ],
-      'include_dirs' : [
+      "include_dirs": [
         "<!(node -e \"require('nan')\")"
       ],
-      'cflags_cc+': [
-        "-Wno-deprecated-declarations"
+      "cflags_cc+": [
+        "-Wno-deprecated-declarations",
+        "-std=c++20"  # Adicionando suporte ao C++20
       ],
-      'conditions': [
-        # common exclusions
-        ['OS!="linux"', {'sources/': [['exclude', '_linux\\.cc$']]}],
-        ['OS!="mac"', {'sources/': [['exclude', '_mac\\.cc|mm?$']]}],
-        ['OS!="win"', {
-          'sources/': [['exclude', '_win\\.cc$']]}, {
-          # else if OS==win, exclude also posix files
-          'sources/': [['exclude', '_posix\\.cc$']]
+      "cflags+": [
+        "-std=c++20",
+        "<!(cups-config --cflags)"
+      ],
+      "conditions": [
+        ["OS!='linux'", {"sources/": [["exclude", "_linux\\.cc$"]]}],
+        ["OS!='mac'", {"sources/": [["exclude", "_mac\\.cc|mm?$"]]}],
+        ["OS!='win'", {
+          "sources/": [["exclude", "_win\\.cc$"]]}, {
+          "sources/": [["exclude", "_posix\\.cc$"]]
         }],
-        # specific settings
-        ['OS!="win"', {
-          'cflags':[
-            '<!(cups-config --cflags)'
+        ["OS!='win'", {
+          "cflags": [
+            "<!(cups-config --cflags)",
+            "-std=c++20"  # Adicionando suporte ao C++20
           ],
-          'ldflags':[
-            '<!(cups-config --libs)'
-            #'-lcups -lgssapi_krb5 -lkrb5 -lk5crypto -lcom_err -lz -lpthread -lm -lcrypt -lz'
+          "ldflags": [
+            "<!(cups-config --libs)"
           ],
-          'libraries':[
-            '<!(cups-config --libs)'
-            #'-lcups -lgssapi_krb5 -lkrb5 -lk5crypto -lcom_err -lz -lpthread -lm -lcrypt -lz'
+          "libraries": [
+            "<!(cups-config --libs)"
           ],
-          'link_settings': {
-            'libraries': [
-              '<!(cups-config --libs)'
+          "link_settings": {
+            "libraries": [
+              "<!(cups-config --libs)"
             ]
           }
         }],
-        ['OS=="mac"', {
-          'cflags':[
-            "-stdlib=libc++"
+        ["OS=='mac'", {
+          "cflags": [
+            "-stdlib=libc++",
+            "-std=c++20"  # Adicionando suporte ao C++20
           ],
-          'xcode_settings': {
-            "OTHER_CPLUSPLUSFLAGS":["-std=c++17", "-stdlib=libc++"],
+          "xcode_settings": {
+            "OTHER_CPLUSPLUSFLAGS": ["-std=c++20", "-stdlib=libc++"],
             "OTHER_LDFLAGS": ["-stdlib=libc++"],
-            "MACOSX_DEPLOYMENT_TARGET": "10.7",
-          },
-        }],
+            "MACOSX_DEPLOYMENT_TARGET": "10.7"
+          }
+        }]
       ]
     }
   ]
