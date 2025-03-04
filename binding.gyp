@@ -29,8 +29,7 @@
         "-std=c++20"  # Adicionando suporte ao C++20
       ],
       "cflags+": [
-        "-std=c++20",
-        "<!(cups-config --cflags)"
+        "-std=c++20"
       ],
       "conditions": [
         ["OS!='linux'", {"sources/": [["exclude", "_linux\\.cc$"]]}],
