@@ -1,3 +1,4 @@
+#define NOMINMAX
 #include <version>
 #include "node_printer.hpp"
 
