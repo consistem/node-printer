@@ -95,20 +95,20 @@ MY_NODE_MODULE_CALLBACK(getSupportedJobCommands);
  * TODO: move to std::unique_ptr on switching to C++11
 */
 template<typename Type>
-class MemValueBase
-{
+class MemValueBase {
 public:
-    MemValueBase(): _value(NULL) {}
+    MemValueBase() : _value(NULL) {}
 
     /** Destructor. The allocated memory will be deallocated
-    */
+     */
     virtual ~MemValueBase() {}
 
-    Type * get() {return _value; }
-    Type * operator ->() { return &_value; }
+    Type* get() { return _value; }
+    Type* operator->() { return &_value; }
     operator bool() const { return (_value != NULL); }
+
 protected:
-    Type *_value;
+    Type* _value;
 
     virtual void free() {};
 };
