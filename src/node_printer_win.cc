@@ -15,6 +15,7 @@
 #include <utility>
 #include <sstream>
 #include <node_version.h>
+#include <iso646.h>
 
 namespace{
     typedef std::map<std::string, DWORD> StatusMapType;
@@ -22,24 +23,24 @@ namespace{
     /** Memory value class management to avoid memory leak
     */
     template<typename Type>
-    class MemValue: public MemValueBase<Type> {
+    class MemValue : public MemValueBase<Type> {
     public:
         /** Constructor of allocating iSizeKbytes bytes memory;
         * @param iSizeKbytes size in bytes of required allocating memory
         */
         MemValue(const DWORD iSizeKbytes) {
-            _value = (Type*)malloc(iSizeKbytes);
+            this->_value = (Type*)malloc(iSizeKbytes); // Use this->_value
         }
-		
-        ~MemValue () {
+
+        ~MemValue() {
             free();
         }
+
     protected:
-        virtual void free() {
-            if(_value != NULL)
-            {
-                ::free(_value);
-                _value = NULL;
+        void free() override {
+            if (this->_value != NULL) { // Use this->_value
+                ::free(this->_value);
+                this->_value = NULL;
             }
         }
     };

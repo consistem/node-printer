@@ -2,6 +2,7 @@
 #include "node_printer.hpp"
 
 #include <node_buffer.h>
+#include <iso646.h>
 
 NAN_MODULE_INIT(Init) {
 // only for node

@@ -1,7 +1,7 @@
 {
-  "name": "@consistem/node-printer",
+  "name": "consistem-node-printer",
   "description": "Node.js printer bindings",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "homepage": "https://github.com/consistem/node-printer",
   "author": {
     "name": "Ion Lupascu",
@@ -16,6 +16,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/consistem/node-printer"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.consistem.com.br/repository/npm-releases/"
   },
   "devDependencies": {
     "node-abi": "^3.74.0",

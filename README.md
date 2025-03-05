@@ -34,7 +34,7 @@ I was involved in a project where I need to print from Node.JS. This is the reas
 
 ### How to install:
 ```
-npm install @consistem/node-printer
+npm install consistem-node-printer
 ```
 
 ### How to use:
